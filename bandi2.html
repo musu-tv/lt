@@ -1,0 +1,1061 @@
+<html>
+<head>
+<title>Vedęs ir turi vaikų / Married With Children</title>
+<meta name="keywords" content="Vedęs ir turi vaikų, Married With Children lt ziureti online internetu internete nemokamai" />
+<meta name="title" content="Vedęs ir turi vaikų, Married With Children, Musu-TV, Filmai, Serialai ziureti, Lietuviska televizija radio internete nemokamai, online TV,  фильмы и сериалы телевидение смотреть онлайн бесплатно" />
+<meta name="description" content="Vedęs ir turi vaikų, Married With Children, Filmai, Serialai ziureti, Tiesiogine transliacija internetu, TV per interneta, TV3 LNK internete,  фильмы и сериалы телевидение смотреть онлайн бесплатно, Discovery, Viasat sport" />
+<meta name="keywords" content="Vedęs ir turi vaikų Married With Children  фильмы и сериалы телевидение смотреть онлайн бесплатно, Online, nemokamai, Filmai Online, Filmai Internete, televizija, filmus, internetu, Filmai, Serialai, online" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
+<style>
+    body {
+      background: #FFE4B5;
+      margin: 0;
+      padding: 0;
+    }
+    #player-container {
+      width: 635px;
+      height: 450px;
+      position: relative;
+      background: #000;
+      overflow: hidden;
+    }
+    #video-player, #iframe-player {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: none;
+      background: #000;
+    }
+    /* logotipas per vidurį viršuje */
+    #logo {
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.7;
+      z-index: 5;
+      height: 30px;
+      width: auto;
+    }
+    /* vertikalus playlistas kairėje */
+    #playlist {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 85%;
+      width: 150px;
+      background: rgba(0,0,0,0.5);
+      padding: 5px;
+      opacity: 0;
+      transition: opacity 0.9s;
+      overflow-y: auto;
+      z-index: 4;
+    }
+ /* fullscreen mygtukas apačioje dešinėje – padidintas */
+    #fullscreenBtn {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      border: 1px solid #555;
+      border-radius: 6px;
+      padding: 6px 12px;  /* buvo 4px 8px */
+      cursor: pointer;
+      font-size: 18px;    /* buvo 14px */
+      z-index: 6;
+    }
+    #fullscreenBtn:hover { background: rgba(80,80,80,0.8); }
+    /* playlistas */
+    #playlist {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 85%;
+      width: 150px;
+      background: rgba(0,0,0,0.5);
+      padding: 5px;
+      opacity: 0;
+      transition: opacity 0.5s;
+      overflow-y: auto;
+      z-index: 4;
+    }
+    #playlist div {
+      cursor: pointer;
+      padding: 6px;
+      margin-bottom: 4px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.1);
+      font-size: 13px;
+      color: #fff;
+      height: 40px;
+      line-height: 1.2em;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    #playlist div:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    /* pradinio paveikslėlio stilius */
+    #preloader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1; /* žemiau playlisto ir video */
+  pointer-events: none; /* leidžia spustelėti video ir playlistą */
+}
+  </style>
+
+
+<style type="text/css">
+
+		.tooltip {
+
+			border-bottom: 1px dotted #000000; color: #000000; outline: none;
+
+			cursor: help; text-decoration: none;
+
+			position: relative;
+
+		}
+
+		.tooltip span {
+
+			margin-left: 999em;
+
+			position: absolute;
+
+		}
+
+		.tooltip:hover span {
+
+			border-radius: 5px 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; 
+
+			box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1); -webkit-box-shadow: 5px 5px rgba(0, 0, 0, 0.1); -moz-box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
+
+			font-family: Calibri, Tahoma, Geneva, sans-serif;
+
+			position: absolute; left: 1em; top: 2em; z-index: 99;
+
+			margin-left: -10; width: 350px;
+
+                        margin-top: -500; width: 350px;
+
+		}
+
+		.tooltip:hover img {
+
+			border: 0; margin: -10px 0 0 -55px;
+
+			float: left; position: absolute;
+
+		}
+
+		.tooltip:hover em {
+
+			font-family: Candara, Tahoma, Geneva, sans-serif; font-size: 1.2em; font-weight: bold;
+
+			display: block; padding: 0.2em 0 0.6em 0;
+
+		}
+
+		.classic { padding: 0.8em 1em; }
+
+		.custom { padding: 0.5em 0.8em 0.8em 2em; }
+
+		* html a:hover { background: transparent; }
+
+		.classic {background: #FFFFAA; border: 1px solid #FFAD33; }
+
+		.critical { background: #FFCCAA; border: 1px solid #FF3334;	}
+
+		.help { background: #9FDAEE; border: 1px solid #2BB0D7;	}
+
+		.info { background: #9FDAEE; border: 1px solid #2BB0D7;	}
+
+		.warning { background: #FFFFAA; border: 1px solid #FFAD33; }
+
+		</style>
+
+
+</head>
+<body oncopy="return false" oncontextmenu="return false">
+
+
+<div id="player-container">
+  <img id="logo" src="https://internetine-tv.narod.ru/musu-tv.png" alt="Logo">
+
+<!--######## PAVEIKSLELIS ######## -->
+  <img id="preloader" src="https://content.foto.my.mail.ru/mail/d_ball/16/h-791.jpg" alt="Pradinis paveikslėlis">
+<!--######## PAVEIKSLELIS ######## -->
+
+  <video id="video-player" controls></video>
+  <iframe id="iframe-player" allowfullscreen></iframe>
+
+  <div id="playlist"></div>
+  <!-- fullscreen mygtukas -->
+  <button id="fullscreenBtn">⛶</button>
+</div>
+
+<script>
+  const videos = [
+    { title: "1 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025089" },
+    { title: "2 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025090" },
+    { title: "3 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025093" },
+    { title: "4 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025094" },
+    { title: "5 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025096" },
+    { title: "6 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025097" },
+    { title: "7 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025098" },
+    { title: "8 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025099" },
+    { title: "9 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025100" },
+    { title: "10 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025101" },
+    { title: "11 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025102" },
+    { title: "12 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025103" },
+    { title: "13 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025104" },
+    { title: "2x1 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025105" },
+    { title: "2x2 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025107" },
+    { title: "2x3 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025108" },
+    { title: "2x4 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025109" },
+    { title: "2x5 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025111" },
+    { title: "2x6 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025112" },
+    { title: "2x7 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025113" },
+    { title: "2x8 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025114" },
+    { title: "2x9 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025115" },
+    { title: "2x10 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025116" },
+    { title: "2x11 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025117" },
+    { title: "2x12 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025118" },
+    { title: "2x13 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025119" },
+    { title: "2x14 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025120" },
+    { title: "2x15 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025122" },
+    { title: "2x16 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025123" },
+    { title: "2x17 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025124" },
+    { title: "2x18 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025125" },
+    { title: "2x19 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025127" },
+    { title: "2x20 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025131" },
+    { title: "2x21 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025134" },
+    { title: "2x22 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025135" },
+    { title: "3x1 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025611" },
+    { title: "3x2 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025612" },
+    { title: "3x3 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025613" },
+    { title: "3x4 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025614" },
+    { title: "3x5 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025615" },
+    { title: "3x6 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025616" },
+    { title: "3x7 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025621" },
+    { title: "3x8 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025623" },
+    { title: "3x9 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025624" },
+    { title: "3x10 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025625" },
+    { title: "3x11 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025626" },
+    { title: "3x12 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025629" },
+    { title: "3x13 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025632" },
+    { title: "3x14 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025633" },
+    { title: "3x15 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025635" },
+    { title: "3x16 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025636" },
+    { title: "3x17 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025638" },
+    { title: "3x18 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025639" },
+    { title: "3x19 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025640" },
+    { title: "3x20 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025641" },
+    { title: "3x21 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025642" },
+    { title: "3x22 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6025643" },
+    { title: "4x1 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027128" },
+    { title: "4x2 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027129" },
+    { title: "4x3 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027130" },
+    { title: "4x4 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027131" },
+    { title: "4x5 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027132" },
+    { title: "4x6 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027133" },
+    { title: "4x7 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027137" },
+    { title: "4x8 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027138" },
+    { title: "4x9 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027140" },
+    { title: "4x10 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027141" },
+    { title: "4x11 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027142" },
+    { title: "4x12 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027144" },
+    { title: "4x13 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027162" },
+    { title: "4x14 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027163" },
+    { title: "4x15 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027165" },
+    { title: "4x16 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027167" },
+    { title: "4x17 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027168" },
+    { title: "4x18 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027169" },
+    { title: "4x19 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027170" },
+    { title: "4x20 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027290" },
+    { title: "4x21 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027171" },
+    { title: "4x22 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027173" },
+    { title: "4x23 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027175" },
+    { title: "5x1 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027720" },
+    { title: "5x2 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027721" },
+    { title: "5x3 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027722" },
+    { title: "5x4 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027723" },
+    { title: "5x5 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027724" },
+    { title: "5x6 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027725" },
+    { title: "5x7 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027726" },
+    { title: "5x8 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027727" },
+    { title: "5x9 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027729" },
+    { title: "5x10 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027730" },
+    { title: "5x11 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027732" },
+    { title: "5x12 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027735" },
+    { title: "5x13 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027736" },
+    { title: "5x14 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027737" },
+    { title: "5x15 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027738" },
+    { title: "5x16 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027739" },
+    { title: "5x17 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027742" },
+    { title: "5x18 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027743" },
+    { title: "5x19 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027745" },
+    { title: "5x20 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027746" },
+    { title: "5x21 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027748" },
+    { title: "5x22 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027749" },
+    { title: "5x23 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027751" },
+    { title: "5x24 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027753" },
+    { title: "5x25 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6027755" },
+    { title: "6x1 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6028449" },
+    { title: "6x2 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6028451" },
+    { title: "6x3 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6028452" },
+    { title: "6x4 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6028453" },
+    { title: "6x5 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6028454" },
+    { title: "6x6 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6028455" },
+    { title: "6x7 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6028456" },
+    { title: "6x8 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6028457" },
+    { title: "6x9 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6028458" },
+    { title: "6x10 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6028459" },
+    { title: "6x11 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6028461" },
+    { title: "6x12 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6028463" },
+    { title: "6x13 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6028465" },
+    { title: "6x14 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6028479" },
+    { title: "6x15 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6028480" },
+    { title: "6x16 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6028482" },
+    { title: "6x17 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6028484" },
+    { title: "6x18 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6028488" },
+    { title: "6x19 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6028492" },
+    { title: "6x20 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6028496" },
+    { title: "6x21 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6028498" },
+    { title: "6x22 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6028501" },
+    { title: "6x23 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6028504" },
+    { title: "6x24 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6028509" },
+    { title: "6x25 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6028512" },
+    { title: "6x26 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6028516" },
+    { title: "7x1 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6032676" },
+    { title: "7x2 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6032677" },
+    { title: "7x3 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6032678" },
+    { title: "7x4 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6032679" },
+    { title: "7x5 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6032680" },
+    { title: "7x6 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6032681" },
+    { title: "7x7 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6032682" },
+    { title: "7x8 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6032683" },
+    { title: "7x9 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6032684" },
+    { title: "7x10 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6032685" },
+    { title: "7x11 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6032686" },
+    { title: "7x12 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6032687" },
+    { title: "7x13 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6032688" },
+    { title: "7x14 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6032689" },
+    { title: "7x15 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6032690" },
+    { title: "7x16 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6032691" },
+    { title: "7x17 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6032692" },
+    { title: "7x18 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6032693" },
+    { title: "7x19 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6032694" },
+    { title: "7x20 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6032695" },
+    { title: "7x21 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6032696" },
+    { title: "7x22 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6032697" },
+    { title: "7x23 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6032698" },
+    { title: "7x24 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6032699" },
+    { title: "7x25 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6032701" },
+    { title: "7x26 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6032702" },
+    { title: "8x1 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034012" },
+    { title: "8x2 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034014" },
+    { title: "8x3 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034016" },
+    { title: "8x4 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034017" },
+    { title: "8x5 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034018" },
+    { title: "8x6 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034019" },
+    { title: "8x7 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034021" },
+    { title: "8x8 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034023" },
+    { title: "8x9 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034024" },
+    { title: "8x10 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034025" },
+    { title: "8x11 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034027" },
+    { title: "8x12 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034030" },
+    { title: "8x13 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034033" },
+    { title: "8x14 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034034" },
+    { title: "8x15 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034038" },
+    { title: "8x16 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034041" },
+    { title: "8x17 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034045" },
+    { title: "8x18 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034046" },
+    { title: "8x19 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034049" },
+    { title: "8x20 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034051" },
+    { title: "8x21 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034053" },
+    { title: "8x22 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034056" },
+    { title: "8x23 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034058" },
+    { title: "8x24 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034060" },
+    { title: "8x25 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034063" },
+    { title: "8x26 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034065" },
+    { title: "9x1 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034459" },
+    { title: "9x2 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034460" },
+    { title: "9x3 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034461" },
+    { title: "9x4 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034462" },
+    { title: "9x5 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034463" },
+    { title: "9x6 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034464" },
+    { title: "9x7 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034466" },
+    { title: "9x8 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034467" },
+    { title: "9x9 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034468" },
+    { title: "9x10 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034469" },
+    { title: "9x11 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6034470" }
+  ];
+
+  const videoEl = document.getElementById("video-player");
+  const iframeEl = document.getElementById("iframe-player");
+  const playlistEl = document.getElementById("playlist");
+  const playerContainer = document.getElementById("player-container");
+  const fullscreenBtn = document.getElementById("fullscreenBtn");
+  const preloaderEl = document.getElementById("preloader");
+
+  let currentIndex = 0;
+
+  function loadVideo(index) {
+    currentIndex = index;
+    const item = videos[index];
+
+    // slepiam pradinį paveikslėlį
+    preloaderEl.style.display = "none";
+
+    videoEl.style.display = "none";
+    iframeEl.style.display = "none";
+
+    if (item.type === "mp4") {
+      iframeEl.src = "";
+      videoEl.src = item.src;
+      videoEl.style.display = "block";
+      videoEl.play();
+    } else if (item.type === "iframe") {
+      videoEl.pause();
+      videoEl.src = "";
+      iframeEl.src = item.src;
+      iframeEl.style.display = "block";
+    }
+  }
+
+  // sugeneruojam playlistą
+  videos.forEach((v, i) => {
+    const div = document.createElement("div");
+    div.textContent = v.title;
+    div.onclick = () => {
+      loadVideo(i);
+      showPlaylist();
+    };
+    playlistEl.appendChild(div);
+  });
+
+  // paleidžiam pirmą
+  // paliekam preloader kol paspaudžiama playlist elementas
+  // jei nori automatiškai paleisti pirmą, gali įjungti loadVideo(0) iškart
+  // loadVideo(0);
+
+  // auto-sekantis tik mp4 atveju
+  videoEl.addEventListener("ended", () => {
+    if (currentIndex < videos.length - 1) {
+      loadVideo(currentIndex + 1);
+    }
+  });
+
+  // playlisto rodymo/slepimo logika
+  let hideTimeout;
+  function showPlaylist() {
+    playlistEl.style.opacity = "1";
+    clearTimeout(hideTimeout);
+    hideTimeout = setTimeout(() => {
+      playlistEl.style.opacity = "0";
+    }, 6000);
+  }
+  playerContainer.addEventListener("mousemove", showPlaylist);
+  showPlaylist();
+  // fullscreen
+  fullscreenBtn.addEventListener("click", () => {
+    if (!document.fullscreenElement) playerContainer.requestFullscreen();
+    else document.exitFullscreen();
+  });
+
+</script>
+
+
+<p>
+
+<!-#################-->
+
+&nbsp; &nbsp; <strong><a class="tooltip" href="#"><font color="blue">INFO</font> <span class="custom info"><img src="https://content.foto.my.mail.ru/mail/d_ball/16/h-1320.jpg" width="630" alt="Apra?ymas:" /></span></a>
+
+<!-#################-->
+
+
+<strong>  &nbsp  &nbsp;  <font color="blue"></font><font color="green">Vedęs ir turi vaikų / Married With Children (1987-1997)</font> &nbsp  &nbsp; 
+
+<p>
+<!-#################-->
+<div class="share-icons">
+  <!-- Facebook -->
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https://tavo-svetaine.lt" 
+     target="_blank" rel="noopener noreferrer">
+    <img src="https://img.icons8.com/color/48/facebook.png" alt="Share on Facebook" width="25" height="25">
+  </a>
+
+  <!-- Telegram -->
+  <a href="https://t.me/share/url?url=https://tavo-svetaine.lt&text=Pažiūrėk šitą!" 
+     target="_blank" rel="noopener noreferrer">
+    <img src="https://img.icons8.com/color/48/telegram-app.png" alt="Share on Telegram" width="25" height="25">
+  </a>
+
+  <!-- Twitter (X) -->
+  <a href="https://twitter.com/intent/tweet?url=https://tavo-svetaine.lt&text=Pažiūrėk šitą!" 
+     target="_blank" rel="noopener noreferrer">
+    <img src="https://img.icons8.com/color/48/twitter.png" alt="Share on Twitter" width="25" height="25">
+  </a>
+
+  <!-- Instagram -->
+  <a href="https://www.instagram.com/tavo_profilis/" 
+     target="_blank" rel="noopener noreferrer">
+    <img src="https://img.icons8.com/fluency/48/instagram-new.png" alt="Visit Instagram" width="25" height="25">
+  </a>
+
+  <!-- TikTok -->
+  <a href="https://www.tiktok.com/@tavo_profilis" 
+     target="_blank" rel="noopener noreferrer">
+    <img src="https://img.icons8.com/fluency/48/tiktok.png" alt="Visit TikTok" width="25" height="25">
+  </a>
+</div>
+
+<style>
+.share-icons {
+  display: flex;
+  gap: 10px;             /* tarpai tarp ikonų */
+  align-items: center;
+  margin-left: 40px;     /* poslinkis nuo kairio krašto */
+}
+
+.share-icons a {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.share-icons a:hover {
+  transform: scale(1.3); /* padidėjimas užvedus pelę */
+}
+</style>
+<!-#################-->
+
+
+<center>
+
+<hr size=3 color=#FFE4B5>
+
+<p>
+
+<hr size=3 color=#FFE4B5>
+
+<p>
+
+<hr size=3 color=#FFE4B5>
+
+<p>
+
+<hr size=3 color=#FFE4B5>
+
+<p>
+
+<hr size=3 color=#FFE4B5>
+
+<p>
+
+<hr size=3 color=#FFE4B5>
+
+<p>
+
+<A HREF="https://musu-tv.github.io/lt/" Target="_self"><img src=home.png title="i pradini"></A> <p><strong> &nbsp &nbsp Vedęs ir turi vaikų / Married With Children lt ziureti online  internetu internete nemokamai Senoji Animacija Pasakos filmai serialai  фильмы и сериалы телевидение смотреть онлайн бесплатно
+
+
+</body>
+</html>
+
+
+
+<!--
+<optgroup label="-----------------">
+<optgroup label="2 sezonas">
+<optgroup label="-----------------">
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165330752&hash=fb899662b0ae5fc8&hd=1">1 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165330754&hash=808048b53a4102f0&hd=1">2 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165330755&hash=358d2b8a6ed1fb55&hd=1">3 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165330818&hash=a70d2d98162b0006&hd=1">4 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165330819&hash=1fddf68e0d1d8995&hd=1">5 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165330820&hash=47a14d72b5e12a14&hd=1">6 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165330871&hash=d0efb2eb12093202&hd=1">7 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165330873&hash=bc9e3973f6af6a88&hd=1">8 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165330876&hash=7435a9d6c3738879&hd=1">9 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165330910&hash=f9bae79b08ac1531&hd=1">10 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165330913&hash=573c00b62ede2c3d&hd=1">11 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165330915&hash=6b74707549d8d6fa&hd=1">12 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165331063&hash=f450cfa90b63b1f1&hd=1">13 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165331067&hash=4c397cf0bfe8bbbf&hd=1">14 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165331070&hash=c133e0433245186a&hd=1">15 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165331115&hash=5ae3ae873e38fe0c&hd=1">16 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165331120&hash=b0844304de732567&hd=1">17 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165331122&hash=f19570758b005167&hd=1">18 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165331159&hash=dd2d5927c6ce8808&hd=1">19 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165331162&hash=80904ac71af8daf6&hd=1">20 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165331166&hash=de0b33685729ef71&hd=1">21 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165331168&hash=6ec1b9112ba59a94&hd=1">22 serija</option>
+
+
+
+</optgroup>
+
+
+
+<optgroup label="3 sezonas">
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165331207&hash=423b15bf59530c8e&hd=1">1 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165331211&hash=fd1d2fd15f171fdb&hd=1">2 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165331216&hash=4bd12c71a747abca&hd=1">3 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336411&hash=14ee926697776627&hd=1">4 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336414&hash=1f164ee1a61b92aa&hd=1">5 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336420&hash=8ce547272ee06c65&hd=1">6 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336425&hash=a2994f06ffd1a4e0&hd=1">7 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336429&hash=e5daed27a420034c&hd=1">8 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336432&hash=c126ba285d8c8b1e&hd=1">9 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336435&hash=04f09ec6909a776e&hd=1">10 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336440&hash=efc343436f881972&hd=1">11 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336441&hash=22ecbbe64c64ba5e&hd=1">12 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336446&hash=cfdcc27bad21ce89&hd=1">13 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336452&hash=1e43253369e95fc6&hd=1">14 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336456&hash=81c50a51138de345&hd=1">15 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336464&hash=3483e0af8b542ead&hd=1">16 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336467&hash=703798c546fa4ca4&hd=1">17 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336470&hash=5568abea206fbb1e&hd=1">18 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336472&hash=04f440b03bcb1c6c&hd=1">19 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336474&hash=a0fe5b40a456fb53&hd=1">20 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336477&hash=09ab7d1cfdb3e2c6&hd=1">21 serija</option>
+
+
+
+
+</optgroup>
+
+
+
+<optgroup label="4 sezonas">
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336496&hash=20ab23e95b923fc5&hd=1">1 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336499&hash=f7a163f461eb5770&hd=1">2 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336504&hash=79978ac50c8547d2&hd=1">3 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336509&hash=e6c429979588ad8d&hd=1">4 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336512&hash=bb29bc1665ef4cec&hd=1">5 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336516&hash=df37f1d8f37ff76c&hd=1">6 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336548&hash=3958cacc8e03519a&hd=1">7 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336550&hash=0af4192fb31a0212&hd=1">8 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336551&hash=00122a14dc69de60&hd=1">9 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336553&hash=c52437094e50421f&hd=1">10 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336557&hash=595dd0fbcef59e2d&hd=1">11 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336558&hash=93406a35ee0543a0&hd=1">12 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336570&hash=153d1a27195bf35f&hd=1">13 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336576&hash=a990ad4ebda7974d&hd=1">14 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336578&hash=7fbdb6d4755231de&hd=1">15 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336579&hash=5e6c98c7bc672e7d&hd=1">16 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336581&hash=992599b083fe3ea4&hd=1">17 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336582&hash=cc12adfaeab25387&hd=1">18 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336589&hash=7b817148342895fe&hd=1">19 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336620&hash=cd74163310b7269d&hd=1">20 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336622&hash=846e6193cafbf7ac&hd=1">21 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336623&hash=6dc9fd15773333ea&hd=1">22 serija</option>
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336625&hash=4d0a3a968d82ae8d&hd=1">23 serija</option>
+
+
+
+</optgroup>
+
+
+
+
+
+
+
+<optgroup label="5 sezonas">
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336684&hash=2686a50168a90070&hd=1">1 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336686&hash=c44e040d87d9bd0c&hd=1">2 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336689&hash=c9745356c5027dbd&hd=1">3 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336693&hash=c1d29df0775865d0&hd=1">4 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336696&hash=2bb9018aaa6ff91f&hd=1">5 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336708&hash=ae72221bfdc9d61e&hd=1">6 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336724&hash=f213202976bc352a&hd=1">7 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336729&hash=727703685bd74e94&hd=1">8 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336733&hash=5896b18a43fb82b0&hd=1">9 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336736&hash=ebdb1d19227327ed&hd=1">10 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336739&hash=e532e1ed8199021f&hd=1">11 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336744&hash=c05e4b2a4043e222&hd=1">12 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336770&hash=ed6db6afb09efc70&hd=1">13 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336774&hash=9619abfb89eca330&hd=1">14 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336775&hash=6ed475742ed6c229&hd=1">15 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336777&hash=e9e39c23d4b84cfb&hd=1">16 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336780&hash=80df393b4590cc6e&hd=1">17 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336784&hash=3eda4874f7d3cafe&hd=1">18 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336785&hash=af0f218e3e1717ec&hd=1">19 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336787&hash=2b93d5ce172c7851&hd=1">20 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336791&hash=b84769af515e7400&hd=1">21 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336793&hash=d4b5966a7fdae73d&hd=1">22 serija</option>
+
+
+
+</optgroup>
+
+
+
+<optgroup label="6 sezonas">
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336804&hash=6e826990bd14b908&hd=1">1 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336806&hash=fe09d8079981b1a4&hd=1">2 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336808&hash=7ef1ec9475fcc8eb&hd=1">3 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336812&hash=e613279bd7f91826&hd=1">4 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336815&hash=1e89551226ce148b&hd=1">5 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336820&hash=244fd50b8dd45c5a&hd=1">6 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336832&hash=9095fef017336096&hd=1">7 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336838&hash=a3e0460878ebb322&hd=1">8 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336841&hash=a399e84ca473c14e&hd=1">9 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336850&hash=fff84acf69fb13b4&hd=1">10 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336852&hash=1f7ded6224834d64&hd=1">11 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336854&hash=c96ce1364f1b50de&hd=1">12 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336873&hash=a512bf0eeb177bee&hd=1">13 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336879&hash=d4bbcf8609e6384f&hd=1">14 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336881&hash=421a2a65f97845e9&hd=1">15 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336883&hash=a719aad7a5910370&hd=1">16 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336887&hash=652093f58bed15ba&hd=1">17 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336890&hash=9a456f5f89d5ce11&hd=1">18 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336894&hash=cf07c90d16c1c14f&hd=1">19 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336906&hash=948b3e846c4a25cc&hd=1">20 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336910&hash=4d2b59af3a2001aa&hd=1">21 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336913&hash=2d83a39dd8a1561c&hd=1">22 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336918&hash=1133e857dba273b1&hd=1">23 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336921&hash=00d80a2c752df226&hd=1">24 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336924&hash=4fc4ecd71270a93e&hd=1">25 serija</option>
+
+
+
+<option value="http://vk.com/video_ext.php?oid=199206219&id=165336928&hash=8a36b77799817a43&hd=1">26 serija</option>
+
+</optgroup>-->
