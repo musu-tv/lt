@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Kelias iki jūsų sitemap failo
+Sitemap: https://github.io
