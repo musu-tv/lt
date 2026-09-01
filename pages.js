@@ -2116,6 +2116,10 @@ window.pages = [
     "title": "Galingasis 6 (2017)  Filmai Serialai-Online nemokamai,Filmai Online, Filmai Internete, ziureti televizija filmus internetu, Filmai-Online, Serialai online, Serial  фильмы и сериалы телевидение смотреть онлайн бесплатно"
   },
   {
+    "url": "https://musu-tv.github.io/lt/galingasis_suo_kriptas.html",
+    "title": "Galingasis suo Kriptas  Filmai Serialai-Online nemokamai,Filmai Online, Filmai Internete, ziureti televizija filmus internetu, Filmai-Online, Serialai online, Serial  фильмы и сериалы телевидение смотреть онлайн бесплатно"
+  },
+  {
     "url": "https://musu-tv.github.io/lt/berniukas.html",
     "title": "Berniukas blogiukas (2018) Filmai Serialai-Online nemokamai,Filmai Online, Filmai Internete, ziureti televizija filmus internetu, Filmai-Online, Serialai online, Serial  фильмы и сериалы телевидение смотреть онлайн бесплатно"
   },
