@@ -2117,7 +2117,7 @@ window.pages = [
   },
   {
     "url": "https://musu-tv.github.io/lt/galingasis_suo_kriptas.html",
-    "title": "Galingasis suo Kriptas  Filmai Serialai-Online nemokamai,Filmai Online, Filmai Internete, ziureti televizija filmus internetu, Filmai-Online, Serialai online, Serial  фильмы и сериалы телевидение смотреть онлайн бесплатно"
+    "title": "Galingasis suo Kriptas,  Musu-TV, Lietuviška televizija internete nemokamai, filmai, serialai, фильмы и сериалы телевидение смотреть онлайн бесплатно"
   },
   {
     "url": "https://musu-tv.github.io/lt/berniukas.html",
