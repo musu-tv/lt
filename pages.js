@@ -95,6 +95,10 @@ window.pages = [
     "url": "https://musu-tv.github.io/lt/fortnitesimpsonai.html",
     "title": "Fortnite ir Simpsonai / Fortnite x the Simpsons (2025) LT"
   },
+    {
+    "url": "https://musu-tv.github.io/lt/ardzuna.html",
+    "title": "Ardžuna / Арджуна RU"
+  },
   {
     "url": "https://musu-tv.github.io/lt/seskirtilek.html",
     "title": "Sesk ir tylek LT"
