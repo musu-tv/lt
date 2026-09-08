@@ -3120,7 +3120,7 @@ window.pages = [
     "title": ""
   },
   {
-    "url": "https://musu-tv.github.io/lt/_vabaliukai.html",
+    "url": "https://musu-tv.github.io/lt/vabaliukai.html",
     "title": ""
   },
   {
