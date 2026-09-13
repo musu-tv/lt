@@ -47,6 +47,10 @@ window.pages = [
     "url": "https://musu-tv.github.io/lt/cipasirdeilas_.html",
     "title": "Čipas ir Deilas skuba į pagalbą 1989 LT"
   },
+    {
+    "url": "https://musu-tv.github.io/lt/tainy.html",
+    "title": "Тайны Ведической Цивилизации RU"
+  },
   {
     "url": "https://musu-tv.github.io/lt/aww38hoo4ffOO7.html",
     "title": "Senoji Animacija » Filmai Serialai-Online nemokamai,Filmai Online, Filmai Internete, ziureti televizija filmus internetu, Filmai-Online, Serialai online, Serial"
