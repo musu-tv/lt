@@ -152,6 +152,83 @@
 
 <body oncopy="return false" oncontextmenu="return false">
 
+
+<!--######## Info  ######## -->
+
+<style type="text/css">
+
+		.tooltip {
+
+			border-bottom: 1px dotted #000000; color: #000000; outline: none;
+
+			cursor: help; text-decoration: none;
+
+			position: relative;
+
+		}
+
+		.tooltip span {
+
+			margin-left: 999em;
+
+			position: absolute;
+
+		}
+
+		.tooltip:hover span {
+
+			border-radius: 5px 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; 
+
+			box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1); -webkit-box-shadow: 5px 5px rgba(0, 0, 0, 0.1); -moz-box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
+
+			font-family: Calibri, Tahoma, Geneva, sans-serif;
+
+			position: absolute; left: 1em; top: 2em; z-index: 99;
+
+			margin-left: -10; width: 350px;
+
+                        margin-top: -500; width: 350px;
+
+		}
+
+		.tooltip:hover img {
+
+			border: 0; margin: -10px 0 0 -55px;
+
+			float: left; position: absolute;
+
+		}
+
+		.tooltip:hover em {
+
+			font-family: Candara, Tahoma, Geneva, sans-serif; font-size: 1.2em; font-weight: bold;
+
+			display: block; padding: 0.2em 0 0.6em 0;
+
+		}
+
+		.classic { padding: 0.8em 1em; }
+
+		.custom { padding: 0.5em 0.8em 0.8em 2em; }
+
+		* html a:hover { background: transparent; }
+
+		.classic {background: #FFFFAA; border: 1px solid #FFAD33; }
+
+		.critical { background: #FFCCAA; border: 1px solid #FF3334;	}
+
+		.help { background: #9FDAEE; border: 1px solid #2BB0D7;	}
+
+		.info { background: #9FDAEE; border: 1px solid #2BB0D7;	}
+
+		.warning { background: #FFFFAA; border: 1px solid #FFAD33; }
+
+		</style>
+
+  <!--######## Info  ######## -->
+
+
+
 <div id="player-container">
   <img id="logo" src="musutv.png" alt="Logo">
 
@@ -223,6 +300,26 @@
  { title: "48 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/N/Naruto/Naruto-dub-48.mp4" },
  { title: "49 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/N/Naruto/Naruto-dub-49.mp4" },
  { title: "50 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/N/Naruto/Naruto-dub-50.mp4" },
+ { title: "51 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/N/Naruto/Naruto-dub-51.mp4" },
+ { title: "52 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/N/Naruto/Naruto-dub-52.mp4" },
+ { title: "53 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/N/Naruto/anime_serials_naruto_E53_ltmeg.mp4" },
+ { title: "54 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/N/Naruto/anime_serials_naruto_E54_ltmeg.mp4" },
+ { title: "55 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/N/Naruto/anime_serials_naruto_E55_ltmeg.mp4" },
+ { title: "56 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/N/Naruto/anime_serials_naruto_E56_ltmeg.mp4" },
+ { title: "57 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/N/Naruto/anime_serials_naruto_E57_ltmeg.mp4" },
+ { title: "58 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/N/Naruto/anime_serials_naruto_E58_ltmeg.mp4" },
+ { title: "59 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/N/Naruto/anime_serials_naruto_E59_ltmeg.mp4" },
+ { title: "60 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/N/Naruto/anime_serials_naruto_E60_ltmeg.mp4" },
+ { title: "61 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/N/Naruto/anime_serials_naruto_E61_ltmeg.mp4" },
+ { title: "62 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/N/Naruto/anime_serials_naruto_E62_ltmeg.mp4" },
+ { title: "63 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/N/Naruto/anime_serials_naruto_E63_ltmeg.mp4" },
+ { title: "64 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/N/Naruto/anime_serials_naruto_E64_ltmeg.mp4" },
+ { title: "65 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/N/Naruto/anime_serials_naruto_E65_ltmeg.mp4" },
+ { title: "66 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/N/Naruto/anime_serials_naruto_E66_ltmeg.mp4" },
+ { title: "67 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/N/Naruto/anime_serials_naruto_E67_ltmeg.mp4" },
+ { title: "68 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/N/Naruto/anime_serials_naruto_E68_ltmeg.mp4" },
+ { title: "69 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/N/Naruto/anime_serials_naruto_E69_ltmeg.mp4" },
+ { title: "70 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/N/Naruto/anime_serials_naruto_E70_ltmeg.mp4" },
  { title: "78 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/N/Naruto/anime_serials_naruto_E78_ltmeg.mp4" },
  { title: "1 serija", type: "mp4", src: "https://srv1.zxcv.me/serial/narutas/2002/e079_ltsub.mp4?st=WKA09L8PHdROMxhjywb5SQ&e=1789555951" },
  { title: "1 serija", type: "mp4", src: "https://srv1.zxcv.me/serial/narutas/2002/e080_ltsub.mp4?st=WKA09L8PHdROMxhjywb5SQ&e=1789555951" },
@@ -442,7 +539,7 @@
 
 <!-#################-->
 
-&nbsp; &nbsp; <strong><a class="tooltip" href="#"><font color="blue">INFO</font> <span class="custom info"><img src="https://content.foto.my.mail.ru/mail/d_ball/16/h-1314.jpg" width="630" alt="Apra?ymas:" /></span></a>
+&nbsp; &nbsp; <strong><a class="tooltip" href="#"><font color="blue">INFO</font> <span class="custom info"><img src="https://content.foto.my.mail.ru/mail/d_ball/16/h-1502.jpg" width="630" alt="Apra?ymas:" /></span></a>
 
 <!-#################-->
 
