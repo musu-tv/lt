@@ -1,4 +1,4 @@
-﻿<html>
+﻿﻿<html>
 <head>
  <title>Blogiukai: įsibrovimas (2025) LT</title>
 <meta name="title" content="Blogiukai įsibrovimas 2025, Senoji Animacija Pasakos Musu-TV, Lietuvi&#353;ka televizija radio internete nemokamai filmai, serialai, online TV" />
@@ -9,109 +9,157 @@
 <meta http-equiv="Expires" content="0" />
   
 <style>
-    body {
-      background: #FFE4B5;
-      margin: 0;
-      padding: 0;
-    }
-    #player-container {
-      width: 635px;
-      height: 450px;
-      position: relative;
-      background: #000;
-      overflow: hidden;
-    }
-    #video-player, #iframe-player {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: none;
-      background: #000;
-    }
-    /* logotipas per vidurį viršuje */
-    #logo {
-      position: absolute;
-      top: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      opacity: 0.7;
-      z-index: 5;
-      height: 30px;
-      width: auto;
-    }
-    /* vertikalus playlistas kairėje */
-    #playlist {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 85%;
-      width: 150px;
-      background: rgba(0,0,0,0.5);
-      padding: 5px;
-      opacity: 0;
-      transition: opacity 0.5s;
-      overflow-y: auto;
-      z-index: 4;
-    }
- /* fullscreen mygtukas apačioje dešinėje – padidintas */
-    #fullscreenBtn {
-      position: absolute;
-      bottom: 5px;
-      right: 5px;
-      background: rgba(0,0,0,0.6);
-      color: #fff;
-      border: 1px solid #555;
-      border-radius: 6px;
-      padding: 6px 12px;  /* buvo 4px 8px */
-      cursor: pointer;
-      font-size: 18px;    /* buvo 14px */
-      z-index: 6;
-    }
-    #fullscreenBtn:hover { background: rgba(80,80,80,0.8); }
-    /* playlistas */
-    #playlist {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 85%;
-      width: 150px;
-      background: rgba(0,0,0,0.5);
-      padding: 5px;
-      opacity: 0;
-      transition: opacity 0.5s;
-      overflow-y: auto;
-      z-index: 4;
-    }
-    #playlist div {
-      cursor: pointer;
-      padding: 6px;
-      margin-bottom: 4px;
-      border-radius: 4px;
-      background: rgba(255,255,255,0.1);
-      font-size: 13px;
-      color: #fff;
-      height: 40px;
-      line-height: 1.2em;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-    }
-    #playlist div:hover {
-      background: rgba(255,255,255,0.2);
-    }
-    /* pradinio paveikslėlio stilius */
-    #preloader {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1; /* žemiau playlisto ir video */
-  pointer-events: none; /* leidžia spustelėti video ir playlistą */
-}
-  </style>
+  body {
+    background: #FFE4B5;
+    margin: 0;
+    padding: 0;
+  }
+  #player-container {
+    width: 635px;
+    height: 450px;
+    position: relative;
+    background: #000;
+    overflow: hidden;
+  }
+  #video-player {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: none;
+    background: #000;
+  }
+  #embed-player {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: none;
+    background: #000;
+  }
+  /* logotipas per vidurį viršuje */
+  #logo {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.7;
+    z-index: 5;
+    height: 30px;
+    width: auto;
+  }
+  /* vertikalus playlistas kairėje */
+  #playlist {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 85%;
+    width: 150px;
+    background: rgba(0,0,0,0.5);
+    padding: 5px;
+    opacity: 0;
+    transition: opacity 0.5s;
+    overflow-y: auto;
+    z-index: 4;
+  }
+  #playlist div {
+    cursor: pointer;
+    padding: 6px;
+    margin-bottom: 4px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.1);
+    font-size: 13px;
+    color: #fff;
+    height: 40px;
+    line-height: 1.2em;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  #playlist div:hover {
+    background: rgba(255,255,255,0.2);
+  }
+  #playlist div.active {
+    background: rgba(41,128,185,0.75);
+  }
+  /* fullscreen mygtukas apačioje dešinėje */
+  #fullscreenBtn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    border: 1px solid #555;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 18px;
+    z-index: 6;
+  }
+  #fullscreenBtn:hover { background: rgba(80,80,80,0.8); }
+  /* pradinio paveikslėlio stilius */
+  #preloader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    pointer-events: none;
+  }
+  /* klaidos pranešimas */
+  #err-box {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    color: #ff6b6b;
+    font-size: 13px;
+    z-index: 6;
+    display: none;
+    background: rgba(0,0,0,0.7);
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+</style>
 
+<style type="text/css">
+  .tooltip {
+    border-bottom: 1px dotted #000000; color: #000000; outline: none;
+    cursor: help; text-decoration: none;
+    position: relative;
+  }
+  .tooltip span {
+    margin-left: 999em;
+    position: absolute;
+  }
+  .tooltip:hover span {
+    border-radius: 5px 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1); -webkit-box-shadow: 5px 5px rgba(0, 0, 0, 0.1); -moz-box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
+    font-family: Calibri, Tahoma, Geneva, sans-serif;
+    position: absolute; left: 1em; top: 2em; z-index: 99;
+    margin-left: -10px; width: 350px;
+    margin-top: 0;
+  }
+  .tooltip:hover img {
+    border: 0; margin: -10px 0 0 -55px;
+    float: left; position: absolute;
+  }
+  .tooltip:hover em {
+    font-family: Candara, Tahoma, Geneva, sans-serif; font-size: 1.2em; font-weight: bold;
+    display: block; padding: 0.2em 0 0.6em 0;
+  }
+  .classic { padding: 0.8em 1em; }
+  .custom { padding: 0.5em 0.8em 0.8em 2em; }
+  * html a:hover { background: transparent; }
+  .classic {background: #FFFFAA; border: 1px solid #FFAD33; }
+  .critical { background: #FFCCAA; border: 1px solid #FF3334; }
+  .help { background: #9FDAEE; border: 1px solid #2BB0D7; }
+  .info { background: #9FDAEE; border: 1px solid #2BB0D7; }
+  .warning { background: #FFFFAA; border: 1px solid #FFAD33; }
+</style>
+
+<body oncopy="return false" oncontextmenu="return false">
+
+<!--######## Info  ######## -->
 
 <style type="text/css">
 
@@ -183,93 +231,103 @@
 
 		</style>
 
-
-</head>
-<body oncopy="return false" oncontextmenu="return false">
+  <!--######## Info  ######## -->
 
 
 <div id="player-container">
-  <img id="logo" src="https://internetine-tv.narod.ru/musu-tv.png" alt="Logo">
+  <img id="logo" src="musutv.png" alt="Logo">
 
 <!--######## PAVEIKSLELIS ######## -->
   <img id="preloader" src="https://content.foto.my.mail.ru/mail/d_ball/16/h-1368.jpg" alt="Pradinis paveikslėlis">
 <!--######## PAVEIKSLELIS ######## -->
 
-  <video id="video-player" controls></video>
-  <iframe id="iframe-player" allowfullscreen></iframe>
+  <video id="video-player" controls playsinline></video>
+  <iframe id="embed-player" frameborder="0" allowfullscreen allow="autoplay; fullscreen"></iframe>
 
   <div id="playlist"></div>
-  <!-- fullscreen mygtukas -->
   <button id="fullscreenBtn">⛶</button>
+  <div id="err-box"></div>
 </div>
 
 <script>
   const videos = [
     { title: "___  1  SEZONAS ___", type: "=", src: "=" },
-    { title: "1 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6078896" },
-    { title: "2 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6079995" },
-    { title: "3 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6084849" },
-    { title: "4 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6087740" },
-    { title: "5 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6138186" },
-    { title: "6 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6138187" },
-    { title: "7 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6163239" },
-    { title: "8 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6163241" },
-    { title: "9 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6163243" }
+    { title: "1 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603527427" },
+    { title: "2 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603527428" },
+    { title: "3 serija", type: "embed", src: "'https://my.mail.ru/video/embed/1360220699603527429" },
+    { title: "4 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603527430" },
+    { title: "5 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603527431" },
+    { title: "6 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603527432" },
+    { title: "7 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603527433" },
+    { title: "8 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603527434" },
+    { title: "9 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603527435" },
   ];
 
-  const videoEl = document.getElementById("video-player");
-  const iframeEl = document.getElementById("iframe-player");
-  const playlistEl = document.getElementById("playlist");
+  const videoEl         = document.getElementById("video-player");
+  const embedEl         = document.getElementById("embed-player");
+  const playlistEl      = document.getElementById("playlist");
   const playerContainer = document.getElementById("player-container");
-  const fullscreenBtn = document.getElementById("fullscreenBtn");
-  const preloaderEl = document.getElementById("preloader");
+  const fullscreenBtn   = document.getElementById("fullscreenBtn");
+  const preloaderEl     = document.getElementById("preloader");
+  const errBox          = document.getElementById("err-box");
 
-  let currentIndex = 0;
+  let currentIndex = -1;
 
   function loadVideo(index) {
-    currentIndex = index;
     const item = videos[index];
+    if (item.type === "separator") return; // separatoriaus neskleidžiam
 
-    // slepiam pradinį paveikslėlį
-    preloaderEl.style.display = "none";
-
-    videoEl.style.display = "none";
-    iframeEl.style.display = "none";
+    currentIndex = index;
+    errBox.style.display = "none";
+    preloaderEl.style.display = "none";   // slepiam pradinį paveikslėlį
 
     if (item.type === "mp4") {
-      iframeEl.src = "";
-      videoEl.src = item.src;
+      // sustabdom embed ir slepiam iframe
+      embedEl.src = "about:blank";
+      embedEl.style.display = "none";
+      // rodom video
       videoEl.style.display = "block";
-      videoEl.play();
-    } else if (item.type === "iframe") {
+      videoEl.src = item.src;
+      videoEl.load();
+      videoEl.play().catch(function () {}); // jei uždrausta — liks su mygtuku
+    } else if (item.type === "embed") {
+      // sustabdom mp4 ir slepiam video
       videoEl.pause();
-      videoEl.src = "";
-      iframeEl.src = item.src;
-      iframeEl.style.display = "block";
+      videoEl.removeAttribute("src");
+      videoEl.load();
+      videoEl.style.display = "none";
+      // rodom iframe
+      embedEl.style.display = "block";
+      embedEl.src = item.src;
     }
+
+    // pažymim aktyvią seriją playliste
+    const items = playlistEl.querySelectorAll("div");
+    items.forEach(function (d, i) {
+      d.classList.toggle("active", videos[i].type !== "separator" && i === index);
+    });
   }
 
   // sugeneruojam playlistą
   videos.forEach((v, i) => {
     const div = document.createElement("div");
     div.textContent = v.title;
-    div.onclick = () => {
-      loadVideo(i);
-      showPlaylist();
-    };
+    div.onclick = () => loadVideo(i);
     playlistEl.appendChild(div);
   });
 
-  // paleidžiam pirmą
-  // paliekam preloader kol paspaudžiama playlist elementas
-  // jei nori automatiškai paleisti pirmą, gali įjungti loadVideo(0) iškart
-  // loadVideo(0);
-
-  // auto-sekantis tik mp4 atveju
+  // automatiškai sekanti serija pasibaigus (veikia tik mp4 —
+  // iframe pabaigos signalo iš kito domeno gauti neįmanoma)
   videoEl.addEventListener("ended", () => {
-    if (currentIndex < videos.length - 1) {
-      loadVideo(currentIndex + 1);
+    for (let i = currentIndex + 1; i < videos.length; i++) {
+      if (videos[i].type !== "separator") { loadVideo(i); break; }
     }
+  });
+
+  videoEl.addEventListener("error", () => {
+    const k = videoEl.error ? videoEl.error.code : "?";
+    errBox.style.display = "block";
+    errBox.textContent = "Klaida įkeliant " + (currentIndex + 1) + " seriją (kodas " + k + ")";
   });
 
   // playlisto rodymo/slepimo logika
@@ -283,12 +341,12 @@
   }
   playerContainer.addEventListener("mousemove", showPlaylist);
   showPlaylist();
+
   // fullscreen
   fullscreenBtn.addEventListener("click", () => {
     if (!document.fullscreenElement) playerContainer.requestFullscreen();
     else document.exitFullscreen();
   });
-
 </script>
 
 
