@@ -11,109 +11,158 @@
 
 
 <style>
-    body {
-      background: #FFE4B5;
-      margin: 0;
-      padding: 0;
-    }
-    #player-container {
-      width: 635px;
-      height: 450px;
-      position: relative;
-      background: #000;
-      overflow: hidden;
-    }
-    #video-player, #iframe-player {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: none;
-      background: #000;
-    }
-    /* logotipas per vidurį viršuje */
-    #logo {
-      position: absolute;
-      top: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      opacity: 0.7;
-      z-index: 5;
-      height: 30px;
-      width: auto;
-    }
-    /* vertikalus playlistas kairėje */
-    #playlist {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 85%;
-      width: 150px;
-      background: rgba(0,0,0,0.5);
-      padding: 5px;
-      opacity: 0;
-      transition: opacity 0.5s;
-      overflow-y: auto;
-      z-index: 4;
-    }
- /* fullscreen mygtukas apačioje dešinėje – padidintas */
-    #fullscreenBtn {
-      position: absolute;
-      bottom: 5px;
-      right: 5px;
-      background: rgba(0,0,0,0.6);
-      color: #fff;
-      border: 1px solid #555;
-      border-radius: 6px;
-      padding: 6px 12px;  /* buvo 4px 8px */
-      cursor: pointer;
-      font-size: 18px;    /* buvo 14px */
-      z-index: 6;
-    }
-    #fullscreenBtn:hover { background: rgba(80,80,80,0.8); }
-    /* playlistas */
-    #playlist {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 85%;
-      width: 150px;
-      background: rgba(0,0,0,0.5);
-      padding: 5px;
-      opacity: 0;
-      transition: opacity 0.5s;
-      overflow-y: auto;
-      z-index: 4;
-    }
-    #playlist div {
-      cursor: pointer;
-      padding: 6px;
-      margin-bottom: 4px;
-      border-radius: 4px;
-      background: rgba(255,255,255,0.1);
-      font-size: 13px;
-      color: #fff;
-      height: 40px;
-      line-height: 1.2em;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-    }
-    #playlist div:hover {
-      background: rgba(255,255,255,0.2);
-    }
-    /* pradinio paveikslėlio stilius */
-    #preloader {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1; /* žemiau playlisto ir video */
-  pointer-events: none; /* leidžia spustelėti video ir playlistą */
-}
-  </style>
+  body {
+    background: #FFE4B5;
+    margin: 0;
+    padding: 0;
+  }
+  #player-container {
+    width: 635px;
+    height: 450px;
+    position: relative;
+    background: #000;
+    overflow: hidden;
+  }
+  #video-player {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: none;
+    background: #000;
+  }
+  #embed-player {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: none;
+    background: #000;
+  }
+  /* logotipas per vidurį viršuje */
+  #logo {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.7;
+    z-index: 5;
+    height: 30px;
+    width: auto;
+  }
+  /* vertikalus playlistas kairėje */
+  #playlist {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 85%;
+    width: 150px;
+    background: rgba(0,0,0,0.5);
+    padding: 5px;
+    opacity: 0;
+    transition: opacity 0.5s;
+    overflow-y: auto;
+    z-index: 4;
+  }
+  #playlist div {
+    cursor: pointer;
+    padding: 6px;
+    margin-bottom: 4px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.1);
+    font-size: 13px;
+    color: #fff;
+    height: 40px;
+    line-height: 1.2em;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  #playlist div:hover {
+    background: rgba(255,255,255,0.2);
+  }
+  #playlist div.active {
+    background: rgba(41,128,185,0.75);
+  }
+  /* fullscreen mygtukas apačioje dešinėje */
+  #fullscreenBtn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    border: 1px solid #555;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 18px;
+    z-index: 6;
+  }
+  #fullscreenBtn:hover { background: rgba(80,80,80,0.8); }
+  /* pradinio paveikslėlio stilius */
+  #preloader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    pointer-events: none;
+  }
+  /* klaidos pranešimas */
+  #err-box {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    color: #ff6b6b;
+    font-size: 13px;
+    z-index: 6;
+    display: none;
+    background: rgba(0,0,0,0.7);
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+</style>
 
+<style type="text/css">
+  .tooltip {
+    border-bottom: 1px dotted #000000; color: #000000; outline: none;
+    cursor: help; text-decoration: none;
+    position: relative;
+  }
+  .tooltip span {
+    margin-left: 999em;
+    position: absolute;
+  }
+  .tooltip:hover span {
+    border-radius: 5px 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1); -webkit-box-shadow: 5px 5px rgba(0, 0, 0, 0.1); -moz-box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
+    font-family: Calibri, Tahoma, Geneva, sans-serif;
+    position: absolute; left: 1em; top: 2em; z-index: 99;
+    margin-left: -10px; width: 350px;
+    margin-top: 0;
+  }
+  .tooltip:hover img {
+    border: 0; margin: -10px 0 0 -55px;
+    float: left; position: absolute;
+  }
+  .tooltip:hover em {
+    font-family: Candara, Tahoma, Geneva, sans-serif; font-size: 1.2em; font-weight: bold;
+    display: block; padding: 0.2em 0 0.6em 0;
+  }
+  .classic { padding: 0.8em 1em; }
+  .custom { padding: 0.5em 0.8em 0.8em 2em; }
+  * html a:hover { background: transparent; }
+  .classic {background: #FFFFAA; border: 1px solid #FFAD33; }
+  .critical { background: #FFCCAA; border: 1px solid #FF3334; }
+  .help { background: #9FDAEE; border: 1px solid #2BB0D7; }
+  .info { background: #9FDAEE; border: 1px solid #2BB0D7; }
+  .warning { background: #FFFFAA; border: 1px solid #FFAD33; }
+</style>
+
+</head>
+<body oncopy="return false" oncontextmenu="return false">
+
+<!--######## Info  ######## -->
 
 <style type="text/css">
 
@@ -185,172 +234,401 @@
 
 		</style>
 
-
-</head>
-<body oncopy="return false" oncontextmenu="return false">
+  <!--######## Info  ######## -->
 
 
 <div id="player-container">
-  <img id="logo" src="musu-tv.png" alt="Logo">
+  <img id="logo" src="musutv.png" alt="Logo">
 
 <!--######## PAVEIKSLELIS ######## -->
   <img id="preloader" src="https://content.foto.my.mail.ru/mail/d_ball/16/h-312.jpg" alt="Pradinis paveikslėlis">
 <!--######## PAVEIKSLELIS ######## -->
 
-  <video id="video-player" controls></video>
-  <iframe id="iframe-player" allowfullscreen></iframe>
+  <video id="video-player" controls playsinline></video>
+  <iframe id="embed-player" frameborder="0" allowfullscreen allow="autoplay; fullscreen"></iframe>
 
   <div id="playlist"></div>
-  <!-- fullscreen mygtukas -->
   <button id="fullscreenBtn">⛶</button>
+  <div id="err-box"></div>
 </div>
 
 <script>
   const videos = [
-    { title: "_BLEACH_", type: "=", src: "=" },
-    { title: "1 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287578" },
-    { title: "2 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287579" },
-    { title: "3 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287581" },
-    { title: "4 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287582" },
-    { title: "5 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287583" },
-    { title: "6 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287585" },
-    { title: "7 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287586" },
-    { title: "8 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287587" },
-    { title: "9 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287588" },
-    { title: "10 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287589" },
-    { title: "11 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287590" },
-    { title: "12 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287591" },
-    { title: "13 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287594" },
-    { title: "14 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287596" },
-    { title: "15 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287598" },
-    { title: "16 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287601" },
-    { title: "17 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287604" },
-    { title: "18 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287610" },
-    { title: "19 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287611" },
-    { title: "20 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287613" },
-    { title: "21 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287615" },
-    { title: "22 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287616" },
-    { title: "23 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287617" },
-    { title: "24 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287619" },
-    { title: "25 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287621" },
-    { title: "26 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287622" },
-    { title: "27 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287623" },
-    { title: "28 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287625" },
-    { title: "29 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287627" },
-    { title: "30 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287630" },
-    { title: "31 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287634" },
-    { title: "32 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287638" },
-    { title: "33 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287642" },
-    { title: "34 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287645" },
-    { title: "35 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287649" },
-    { title: "36 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287652" },
-    { title: "37 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287655" },
-    { title: "38 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287659" },
-    { title: "39 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287660" },
-    { title: "40 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287662" },
-    { title: "41 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287664" },
+    { title: "___  BLEACH ___", type: "=", src: "=" },
+    { title: "___  1  SEZONAS ___", type: "=", src: "=" },
+        { title: "1 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603507436" },
+        { title: "2 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603507461" },
+        { title: "3 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603507462" },
+        { title: "4 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603507486" },
+        { title: "5 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603507487" },
+        { title: "6 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603507490" },
+        { title: "7 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603507528" },
+        { title: "8 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603507529" },
+        { title: "9 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603507559" },
+        { title: "10 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/B/Bleach/010-dub.mp4" },
+        { title: "11 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/B/Bleach/011-dub.mp4" },
+        { title: "12 serija", type: "mp4", src: "https://s3.storage.animesub.lt/anime/B/Bleach/012-dub.mp4" },
+        { title: "13 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603508735" },
+        { title: "14 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603508736" },
+        { title: "15 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603508737" },
+        { title: "16 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603508738" },
+        { title: "17 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603508739" },
+        { title: "18 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603508740" },
+        { title: "19 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603508741" },
+        { title: "20 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603508742" },
+
+    { title: "___  2  SEZONAS ___", type: "=", src: "=" },
+        { title: "1 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603508743" },
+        { title: "2 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603508744" },
+        { title: "3 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603508745" },
+        { title: "4 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603508746" },
+        { title: "5 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603508747" },
+        { title: "6 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603508748" },
+        { title: "7 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603508749" },
+        { title: "8 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603508750" },
+        { title: "9 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603508896" },
+        { title: "10 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603508897" },
+        { title: "11 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603508898" },
+        { title: "12 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603508899" },
+        { title: "13 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603508900" },
+        { title: "14 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603508901" },
+        { title: "15 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603508902" },
+        { title: "16 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603513558" },
+        { title: "17 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603513559" },
+        { title: "18 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603513560" },
+        { title: "19 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603513561" },
+        { title: "20 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603513562" },
+        { title: "21 serija", type: "embed", src: "https://my.mail.ru/video/embed/1360220699603513563" },
+
+
+    { title: "___  3  SEZONAS ___", type: "=", src: "=" },
+        { title: "1 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s03/s03e01.mp4" },
+        { title: "2 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s03/s03e02.mp4" },
+        { title: "3 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s03/s03e03.mp4" },
+        { title: "4 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s03/s03e04.mp4" },
+        { title: "5 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s03/s03e05.mp4" },
+        { title: "6 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s03/s03e06.mp4" },
+        { title: "7 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s03/s03e07.mp4" },
+        { title: "8 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s03/s03e08.mp4" },
+        { title: "9 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s03/s03e09.mp4" },
+        { title: "10 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s03/s03e10.mp4" },
+        { title: "11 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s03/s03e11.mp4" },
+        { title: "12 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s03/s03e12.mp4" },
+        { title: "13 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s03/s03e13.mp4" },
+        { title: "14 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s03/s03e14.mp4" },
+        { title: "15 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s03/s03e15.mp4" },
+        { title: "16 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s03/s03e16.mp4" },
+        { title: "17 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s03/s03e17.mp4" },
+        { title: "18 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s03/s03e18.mp4" },
+        { title: "19 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s03/s03e19.mp4" },
+        { title: "20 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s03/s03e20.mp4" },
+        { title: "21 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s03/s03e21.mp4" },
+        { title: "22 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s03/s03e22.mp4" },
+    { title: "___  4  SEZONAS ___", type: "=", src: "=" },
+        { title: "1 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e01.mp4" },
+        { title: "2 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e02.mp4" },
+        { title: "3 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e03.mp4" },
+        { title: "4 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e04.mp4" },
+        { title: "5 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e05.mp4" },
+        { title: "6 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e06.mp4" },
+        { title: "7 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e07.mp4" },
+        { title: "8 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e08.mp4" },
+        { title: "9 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e09.mp4" },
+        { title: "10 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e10.mp4" },
+        { title: "11 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e11.mp4" },
+        { title: "12 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e12.mp4" },
+        { title: "13 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e13.mp4" },
+        { title: "14 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e14.mp4" },
+        { title: "15 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e15.mp4" },
+        { title: "16 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e16.mp4" },
+        { title: "17 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e17.mp4" },
+        { title: "18 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e18.mp4" },
+        { title: "19 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e19.mp4" },
+        { title: "20 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e20.mp4" },
+        { title: "21 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e21.mp4" },
+        { title: "22 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e22.mp4" },
+        { title: "23 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e23.mp4" },
+        { title: "24 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e24.mp4" },
+        { title: "25 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e25.mp4" },
+        { title: "26 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e26.mp4" },
+        { title: "27 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e27.mp4" },
+        { title: "28 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s04/s04e28.mp4" },
+    { title: "___  5  SEZONAS ___", type: "=", src: "=" },
+        { title: "1 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s05/s05e01.mp4" },
+        { title: "2 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s05/s05e02.mp4" },
+        { title: "3 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s05/s05e03.mp4" },
+        { title: "4 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s05/s05e04.mp4" },
+        { title: "5 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s05/s05e05.mp4" },
+        { title: "6 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s05/s05e06.mp4" },
+        { title: "7serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s05/s05e07.mp4" },
+        { title: "8 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s05/s05e08.mp4" },
+        { title: "9 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s05/s05e09.mp4" },
+        { title: "10 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s05/s05e10.mp4" },
+        { title: "11 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s05/s05e11.mp4" },
+        { title: "12 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s05/s05e12.mp4" },
+        { title: "13 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s05/s05e13.mp4" },
+        { title: "14 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s05/s05e14.mp4" },
+        { title: "15 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s05/s05e15.mp4" },
+        { title: "16 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s05/s05e16.mp4" },
+        { title: "17 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s05/s05e17.mp4" },
+        { title: "18 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s05/s05e18.mp4" },
+    { title: "___  6  SEZONAS ___", type: "=", src: "=" },
+        { title: "1 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s06/s06e01.mp4" },
+        { title: "2 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s06/s06e02.mp4" },
+        { title: "3 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s06/s06e03.mp4" },
+        { title: "4 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s06/s06e04.mp4" },
+        { title: "5 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s06/s06e05.mp4" },
+        { title: "6 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s06/s06e06.mp4" },
+        { title: "7 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s06/s06e07.mp4" },
+        { title: "8 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s06/s06e08.mp4" },
+        { title: "9 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s06/s06e09.mp4" },
+        { title: "10 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s06/s06e10.mp4" },
+        { title: "11 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s06/s06e11.mp4" },
+        { title: "12 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s06/s06e12.mp4" },
+        { title: "13 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s06/s06e13.mp4" },
+        { title: "14 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s06/s06e14.mp4" },
+        { title: "15 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s06/s06e15.mp4" },
+        { title: "16 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s06/s06e16.mp4" },
+        { title: "17 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s06/s06e17.mp4" },
+        { title: "18 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s06/s06e18.mp4" },
+        { title: "19 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s06/s06e19.mp4" },
+        { title: "20 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s06/s06e20.mp4" },
+        { title: "21 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s06/s06e21.mp4" },
+        { title: "22 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s06/s06e22.mp4" },
+    { title: "___  7  SEZONAS ___", type: "=", src: "=" },
+        { title: "1 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s07/s07e01.mp4" },
+        { title: "2 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s07/s07e02.mp4" },
+        { title: "3 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s07/s07e03.mp4" },
+        { title: "4 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s07/s07e04.mp4" },
+        { title: "5 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s07/s07e05.mp4" },
+        { title: "6 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s07/s07e06.mp4" },
+        { title: "7 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s07/s07e07.mp4" },
+        { title: "8 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s07/s07e08.mp4" },
+        { title: "9 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s07/s07e09.mp4" },
+        { title: "10 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s07/s07e10.mp4" },
+        { title: "11 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s07/s07e11.mp4" },
+        { title: "12 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s07/s07e12.mp4" },
+        { title: "13 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s07/s07e13.mp4" },
+        { title: "14 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s07/s07e14.mp4" },
+        { title: "15 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s07/s07e15.mp4" },
+        { title: "16 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s07/s07e16.mp4" },
+        { title: "17 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s07/s07e17.mp4" },
+        { title: "18 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s07/s07e18.mp4" },
+        { title: "19 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s07/s07e19.mp4" },
+        { title: "20 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s07/s07e20.mp4" },
+    { title: "___  8  SEZONAS ___", type: "=", src: "=" },
+        { title: "1 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s08/s08e01.mp4" },
+        { title: "2 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s08/s08e02.mp4" },
+        { title: "3 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s08/s08e03.mp4" },
+        { title: "4 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s08/s08e04.mp4" },
+        { title: "5 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s08/s08e05.mp4" },
+        { title: "6 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s08/s08e06.mp4" },
+        { title: "7 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s08/s08e07.mp4" },
+        { title: "8 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s08/s08e08.mp4" },
+        { title: "9 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s08/s08e09.mp4" },
+        { title: "10 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s08/s08e10.mp4" },
+        { title: "11 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s08/s08e11.mp4" },
+        { title: "12 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s08/s08e12.mp4" },
+        { title: "13 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s08/s08e13.mp4" },
+        { title: "14 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s08/s08e14.mp4" },
+        { title: "15 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s08/s08e15.mp4" },
+        { title: "16 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s08/s08e16.mp4" },
+    { title: "___  9  SEZONAS ___", type: "=", src: "=" },
+        { title: "1 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s09/s09e01.mp4" },
+        { title: "2 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s09/s09e02.mp4" },
+        { title: "3 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s09/s09e03.mp4" },
+        { title: "4 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s09/s09e04.mp4" },
+        { title: "5 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s09/s09e05.mp4" },
+        { title: "6 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s09/s09e06.mp4" },
+        { title: "7 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s09/s09e07.mp4" },
+        { title: "8 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s09/s09e08.mp4" },
+        { title: "9 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s09/s09e09.mp4" },
+        { title: "10 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s09/s09e10.mp4" },
+        { title: "11 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s09/s09e11.mp4" },
+        { title: "12 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s09/s09e12.mp4" },
+        { title: "13 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s09/s09e13.mp4" },
+        { title: "14 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s09/s09e14.mp4" },
+        { title: "15 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s09/s09e15.mp4" },
+        { title: "16 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s09/s09e16.mp4" },
+        { title: "17 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s09/s09e17.mp4" },
+        { title: "18 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s09/s09e18.mp4" },
+        { title: "19 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s09/s09e19.mp4" },
+        { title: "20 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s09/s09e20.mp4" },
+        { title: "21 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s09/s09e21.mp4" },
+        { title: "22 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s09/s09e22.mp4" },
+    { title: "___  10  SEZONAS ___", type: "=", src: "=" },
+        { title: "1 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s10/s10e01.mp4" },
+        { title: "2 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s10/s10e02.mp4" },
+        { title: "3 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s10/s10e03.mp4" },
+        { title: "4 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s10/s10e04.mp4" },
+        { title: "5 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s10/s10e05.mp4" },
+        { title: "6 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s10/s10e06.mp4" },
+        { title: "7 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s10/s10e07.mp4" },
+        { title: "8 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s10/s10e08.mp4" },
+        { title: "9 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s10/s10e09.mp4" },
+        { title: "10 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s10/s10e10.mp4" },
+        { title: "11 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s10/s10e11.mp4" },
+        { title: "12 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s10/s10e12.mp4" },
+        { title: "13 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s10/s10e13.mp4" },
+        { title: "14 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s10/s10e14.mp4" },
+        { title: "15 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s10/s10e15.mp4" },
+        { title: "16 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s10/s10e16.mp4" },
+    { title: "___  11  SEZONAS ___", type: "=", src: "=" },
+        { title: "1 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s11/s11e01.mp4" },
+        { title: "2 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s11/s11e02.mp4" },
+        { title: "3 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s11/s11e03.mp4" },
+        { title: "4 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s11/s11e04.mp4" },
+        { title: "5 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s11/s11e05.mp4" },
+        { title: "6 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s11/s11e06.mp4" },
+        { title: "7 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s11/s11e07.mp4" },
+    { title: "___  12  SEZONAS ___", type: "=", src: "=" },
+        { title: "1 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s12/s12e01.mp4" },
+        { title: "2 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s12/s12e02.mp4" },
+        { title: "3 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s12/s12e03.mp4" },
+        { title: "4 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s12/s12e04.mp4" },
+        { title: "5 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s12/s12e05.mp4" },
+        { title: "6 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s12/s12e06.mp4" },
+        { title: "7 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s12/s12e07.mp4" },
+        { title: "8 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s12/s12e08.mp4" },
+        { title: "9 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s12/s12e09.mp4" },
+        { title: "10 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s12/s12e10.mp4" },
+        { title: "11 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s12/s12e11.mp4" },
+        { title: "12 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s12/s12e12.mp4" },
+        { title: "13 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s12/s12e13.mp4" },
+        { title: "14 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s12/s12e14.mp4" },
+        { title: "15 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s12/s12e15.mp4" },
+        { title: "16 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s12/s12e16.mp4" },
+        { title: "17 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s12/s12e17.mp4" },
+    { title: "___  13  SEZONAS ___", type: "=", src: "=" },
+        { title: "1 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s13/s13e01.mp4" },
+        { title: "2 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s13/s13e02.mp4" },
+        { title: "3 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s13/s13e03.mp4" },
+        { title: "4 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s13/s13e04.mp4" },
+        { title: "5 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s13/s13e05.mp4" },
+        { title: "6 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s13/s13e06.mp4" },
+        { title: "7 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s13/s13e07.mp4" },
+        { title: "8 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s13/s13e08.mp4" },
+        { title: "9 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s13/s13e09.mp4" },
+        { title: "10 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s13/s13e10.mp4" },
+        { title: "11 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s13/s13e11.mp4" },
+        { title: "12 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s13/s13e12.mp4" },
+        { title: "13 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s13/s13e13.mp4" },
+        { title: "14 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach/s13/s13e14.mp4" },
+
     { title: "==========", type: "=", src: "=" },
     { title: "Bleach: tūkstančio metų kraujo karas", type: "=", src: "=" },
-    { title: "1 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287423" },
-    { title: "2 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287424" },
-    { title: "3 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287425" },
-    { title: "4 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287426" },
-    { title: "5 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287427" },
-    { title: "6 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287441" },
-    { title: "7 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287442" },
-    { title: "8 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287444" },
-    { title: "9 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287445" },
-    { title: "10 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287446" },
-    { title: "11 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287447" },
-    { title: "12 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287448" },
-    { title: "13 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287449" },
+        { title: "1 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s01/s01e01.mp4" },
+        { title: "2 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s01/s01e02.mp4" },
+        { title: "3 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s01/s01e03.mp4" },
+        { title: "4 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s01/s01e04.mp4" },
+        { title: "5 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s01/s01e05.mp4" },
+        { title: "6 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s01/s01e06.mp4" },
+        { title: "7 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s01/s01e07.mp4" },
+        { title: "8 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s01/s01e08.mp4" },
+        { title: "9 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s01/s01e09.mp4" },
+        { title: "10 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s01/s01e10.mp4" },
+        { title: "11 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s01/s01e11.mp4" },
+        { title: "12 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s01/s01e12.mp4" },
+        { title: "13 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s01/s01e13.mp4" },
     { title: "___  2  SEZONAS ___", type: "=", src: "=" },
-    { title: "1 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287496" },
-    { title: "2 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287497" },
-    { title: "3 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287499" },
-    { title: "4 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287500" },
-    { title: "5 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287501" },
-    { title: "6 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287502" },
-    { title: "7 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287503" },
-    { title: "8 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287504" },
-    { title: "9 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287505" },
-    { title: "10 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287506" },
-    { title: "11 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287508" },
-    { title: "12 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287509" },
-    { title: "13 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287512" },
+        { title: "1 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s02/s02e01.mp4" },
+        { title: "2 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s02/s02e02.mp4" },
+        { title: "3 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s02/s02e03.mp4" },
+        { title: "4 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s02/s02e04.mp4" },
+        { title: "5 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s02/s02e05.mp4" },
+        { title: "6 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s02/s02e06.mp4" },
+        { title: "7 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s02/s02e07.mp4" },
+        { title: "8 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s02/s02e08.mp4" },
+        { title: "9 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s02/s02e09.mp4" },
+        { title: "10 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s02/s02e10.mp4" },
+        { title: "11 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s02/s02e11.mp4" },
+        { title: "12 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s02/s02e12.mp4" },
+        { title: "13 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s02/s02e13.mp4" },
     { title: "___  3 SEZONAS ___", type: "=", src: "=" },
-    { title: "1 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287560" },
-    { title: "2 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287561" },
-    { title: "3 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287562" },
-    { title: "4 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287563" },
-    { title: "5 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287565" },
-    { title: "6 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287567" },
-    { title: "7 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287568" },
-    { title: "8 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287569" },
-    { title: "9 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287570" },
-    { title: "10 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287571" },
-    { title: "11 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287572" },
-    { title: "12 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287573" },
-    { title: "13 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287574" },
-    { title: "14 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287575" },
+        { title: "1 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s03/s03e01.mp4" },
+        { title: "2 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s03/s03e02.mp4" },
+        { title: "3 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s03/s03e03.mp4" },
+        { title: "4 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s03/s03e04.mp4" },
+        { title: "5 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s03/s03e05.mp4" },
+        { title: "6 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s03/s03e06.mp4" },
+        { title: "7 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s03/s03e07.mp4" },
+        { title: "8 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s03/s03e08.mp4" },
+        { title: "9 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s03/s03e09.mp4" },
+        { title: "10 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s03/s03e10.mp4" },
+        { title: "11 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s03/s03e11.mp4" },
+        { title: "12 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s03/s03e12.mp4" },
+        { title: "13 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s03/s03e13.mp4" },
+        { title: "14 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s03/s03e14.mp4" },
     { title: "___  4  SEZONAS ___", type: "=", src: "=" },
-    { title: "1 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287576" },
-    { title: "2 serija", type: "iframe", src: "https://video.sibnet.ru/shell.php?videoid=6287577" }
+        { title: "1 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s04/s04e01.mp4" },
+        { title: "2 serija", type: "mp4", src: "https://img.qsqs.online/anime/bleach_tukstancio_metu_kraujo_karas/s04/s04e02.mp4" },
   ];
 
-  const videoEl = document.getElementById("video-player");
-  const iframeEl = document.getElementById("iframe-player");
-  const playlistEl = document.getElementById("playlist");
+  const videoEl         = document.getElementById("video-player");
+  const embedEl         = document.getElementById("embed-player");
+  const playlistEl      = document.getElementById("playlist");
   const playerContainer = document.getElementById("player-container");
-  const fullscreenBtn = document.getElementById("fullscreenBtn");
-  const preloaderEl = document.getElementById("preloader");
+  const fullscreenBtn   = document.getElementById("fullscreenBtn");
+  const preloaderEl     = document.getElementById("preloader");
+  const errBox          = document.getElementById("err-box");
 
-  let currentIndex = 0;
+  let currentIndex = -1;
 
   function loadVideo(index) {
-    currentIndex = index;
     const item = videos[index];
+    if (item.type === "separator") return; // separatoriaus neskleidžiam
 
-    // slepiam pradinį paveikslėlį
-    preloaderEl.style.display = "none";
-
-    videoEl.style.display = "none";
-    iframeEl.style.display = "none";
+    currentIndex = index;
+    errBox.style.display = "none";
+    preloaderEl.style.display = "none";   // slepiam pradinį paveikslėlį
 
     if (item.type === "mp4") {
-      iframeEl.src = "";
-      videoEl.src = item.src;
+      // sustabdom embed ir slepiam iframe
+      embedEl.src = "about:blank";
+      embedEl.style.display = "none";
+      // rodom video
       videoEl.style.display = "block";
-      videoEl.play();
-    } else if (item.type === "iframe") {
+      videoEl.src = item.src;
+      videoEl.load();
+      videoEl.play().catch(function () {}); // jei uždrausta — liks su mygtuku
+    } else if (item.type === "embed") {
+      // sustabdom mp4 ir slepiam video
       videoEl.pause();
-      videoEl.src = "";
-      iframeEl.src = item.src;
-      iframeEl.style.display = "block";
+      videoEl.removeAttribute("src");
+      videoEl.load();
+      videoEl.style.display = "none";
+      // rodom iframe
+      embedEl.style.display = "block";
+      embedEl.src = item.src;
     }
+
+    // pažymim aktyvią seriją playliste
+    const items = playlistEl.querySelectorAll("div");
+    items.forEach(function (d, i) {
+      d.classList.toggle("active", videos[i].type !== "separator" && i === index);
+    });
   }
 
   // sugeneruojam playlistą
   videos.forEach((v, i) => {
     const div = document.createElement("div");
     div.textContent = v.title;
-    div.onclick = () => {
-      loadVideo(i);
-      showPlaylist();
-    };
+    div.onclick = () => loadVideo(i);
     playlistEl.appendChild(div);
   });
 
-  // paleidžiam pirmą
-  // paliekam preloader kol paspaudžiama playlist elementas
-  // jei nori automatiškai paleisti pirmą, gali įjungti loadVideo(0) iškart
-  // loadVideo(0);
-
-  // auto-sekantis tik mp4 atveju
+  // automatiškai sekanti serija pasibaigus (veikia tik mp4 —
+  // iframe pabaigos signalo iš kito domeno gauti neįmanoma)
   videoEl.addEventListener("ended", () => {
-    if (currentIndex < videos.length - 1) {
-      loadVideo(currentIndex + 1);
+    for (let i = currentIndex + 1; i < videos.length; i++) {
+      if (videos[i].type !== "separator") { loadVideo(i); break; }
     }
+  });
+
+  videoEl.addEventListener("error", () => {
+    const k = videoEl.error ? videoEl.error.code : "?";
+    errBox.style.display = "block";
+    errBox.textContent = "Klaida įkeliant " + (currentIndex + 1) + " seriją (kodas " + k + ")";
   });
 
   // playlisto rodymo/slepimo logika
@@ -364,12 +642,12 @@
   }
   playerContainer.addEventListener("mousemove", showPlaylist);
   showPlaylist();
+
   // fullscreen
   fullscreenBtn.addEventListener("click", () => {
     if (!document.fullscreenElement) playerContainer.requestFullscreen();
     else document.exitFullscreen();
   });
-
 </script>
 
 
