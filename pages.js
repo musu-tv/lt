@@ -115,6 +115,10 @@ window.pages = [
     "url": "https://musu-tv.github.io/lt/raganaiteseide.html",
     "title": "Raganaitė Seidė LT"
   },
+    {
+    "url": "https://musu-tv.github.io/lt/vaiduokliuvesbutis.html",
+    "title": "Vaiduoklių viešbutis (2025) LT"
+  },
   {
     "url": "https://musu-tv.github.io/lt/madagaskarasmaz.html",
     "title": "Madagaskaras. maži ir pašėlę LT"
