@@ -48,6 +48,10 @@ window.pages = [
     "title": "Čipas ir Deilas skuba į pagalbą 1989 LT"
   },
     {
+    "url": "https://musu-tv.github.io/lt/vienokraujo.html",
+    "title": "Vieno kraujo (2026) LT"
+  },
+    {
     "url": "https://musu-tv.github.io/lt/tainy.html",
     "title": "Тайны Ведической Цивилизации RU"
   },
